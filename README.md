@@ -1,0 +1,2 @@
+# Automatiseerimine
+Vagrant
