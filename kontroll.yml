@@ -1,0 +1,49 @@
+- name: Kontrolli masina olekut ja paigalda vajalik tarkvara
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: Kontrolli, kas masinad vastavad
+      ping:
+
+    - name: Kuvab OS infot
+      debug:
+        msg: "Host: {{ inventory_hostname }} - OS: {{ ansible_distribution }} {{ ansible_distribution_version }}"
+
+    - name: Paigalda vajalikud paketid Debian/Ubuntu masinates
+      ansible.builtin.apt:
+        name:
+          - snmpd
+          - tmux
+          - mc
+          - wget
+          - tree
+          - git
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Paigalda vajalikud paketid CentOS/RHEL masinates
+      ansible.builtin.dnf:
+        name:
+          - net-snmp
+          - tmux
+          - mc
+          - wget
+          - tree
+          - git
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Paigalda vajalikud paketid OpenSUSE masinates
+      ansible.builtin.zypper:
+        name:
+          - net-snmp
+          - tmux
+          - mc
+          - wget
+          - tree
+          - git
+        state: present
+      when: ansible_os_family == "Suse"
