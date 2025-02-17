@@ -1,11 +1,6 @@
 # Automatiseerimine
 Vagrant
 
-õppematerjal:
-https://muudel.karjane.net
-külalisligipääsu parool:
-hammasratas
- 
 Teil on vaja luua uus Vagrantfile nii, et luuakse järgnevalt kirjeldatud keskkond. Leidke ise Vagrant Cloudis https://app.vagrantup.com/boxes/search õiged virtuaalmasina imaged õigete versioonidega):
  
 NB! Virtualboxi võrgu nimeks kasutage ansible_lab asemel ansible_sinunimi
